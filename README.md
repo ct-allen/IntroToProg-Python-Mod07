@@ -22,6 +22,45 @@ There are many different types of exceptions for the programmer to use to narrow
 
 Figure 2: Try-except statement starting on line 30. []
 
+
+Full Script:
+```
+import pickle
+
+
+# Data -------------------------------------------- #
+strFileName = 'AppData.pkl'
+lstCustomer = []
+
+# Processing -------------------------------------- #
+def save_data_to_file(file_name, list_of_data):
+    file = open(file_name, 'wb')
+    pickle.dump(lstCustomer, file)
+    file.close()
+    return print("Saved!")
+
+def read_data_from_file(file_name):
+    objfile = open(file_name, 'rb')
+    objFiledata = pickle.load(objfile)
+    objfile.close()
+    print(objFiledata)
+    return objFiledata
+
+# Presentation ------------------------------------ #
+try:
+    oldfiledata = read_data_from_file(strFileName)
+    lstCustomer.append(oldfiledata)
+except:
+    print('No AppData.pkl found, continue making list.')
+
+Id = float(input('Enter your ID number: '))
+name = input('Enter you Name: ')
+Id_name = [Id, name]
+lstCustomer.append(Id_name)
+save_data_to_file(file_name=strFileName, list_of_data=lstCustomer)
+read_data_from_file(file_name=strFileName)
+```
+
 ## Summary ##
 There is a real difference in programming when you have existing code versus starting from scratch. But Professor Root is building us up as programmers and enabling us to strive outside of the class.
 
